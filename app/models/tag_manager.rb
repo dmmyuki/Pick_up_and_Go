@@ -1,0 +1,2 @@
+class TagManager < ApplicationRecord
+end
