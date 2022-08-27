@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   }
 
   scope module: :public do
+    resources:posts
   end
 
   namespace :admin do
