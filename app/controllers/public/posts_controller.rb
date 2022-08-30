@@ -1,18 +1,20 @@
 class Public::PostsController < ApplicationController
   def new
-    @post = Post.new
+    @place = Place.new
   end
 
   def create
-    post = Post.new(post_params)
-    post.save
+    place = Place.new(post_params)
+    place.save
     redirect_to post_path(post)
   end
 
   def index
+    @places = Place.all
   end
 
   def show
+    @place = Place.find(params[:id])
   end
 
   def edit

@@ -1,2 +1,39 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="row">
+  <h2>スポット詳細</h2>
+
+  <div class="col-sm-8 offset-sm-2">
+    <%= image_tag @place.get_image %>
+    <h3><%= @place.title %></h3>
+    <p><%= @place.body %></p>
+  </div>
+
+  <div class="col-sm-5 ml-3">
+    <!--Google Mapを表示-->
+  </div>
+
+  <div class="col-sm-5 mr-3">
+    <h4>スポット情報</h4>
+    <table class="table table-borderless">
+      <tr>
+        <th>営業時間</th>
+        <td><%= @place.business_hour %></td>
+      </tr>
+      <tr>
+        <th>料金</th>
+        <td><%= @place.price %></td>
+      </tr>
+      <tr>
+        <th>アクセス方法</th>
+        <td><%= @place.access %></td>
+      </tr>
+      <tr>
+        <th>投稿者</th>
+        <td>
+          <%= image_tag プロフィール画像のパス, size:"50x50" %>
+          <!--↓if文使って、フルネームかニックネームを表示させる-->
+          <%= @place.user.nickname %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
