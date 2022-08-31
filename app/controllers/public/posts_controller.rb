@@ -15,6 +15,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    gon.place = @place
   end
 
   def edit
@@ -22,6 +23,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access)
+    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address)
   end
 end

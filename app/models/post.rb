@@ -6,6 +6,11 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :tag_managers
 
+  # addressカラムを基準に緯度経度を算出する。
+  geocoded_by :address
+  # 住所変更時に緯度経度も変更する。
+  after_validation :geocode
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
