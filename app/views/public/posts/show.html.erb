@@ -8,7 +8,33 @@
   </div>
 
   <div class="col-sm-5 ml-3">
-    <!--Google Mapを表示-->
+    <h5><%= @place.address %></h5>
+      <div id='map'></div>
+
+      <style>
+        #map{
+          height: 200px;
+          width: 300px;
+        }
+      </style>
+
+      <script>
+        let map;
+        function initMap(){
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: <% @place.latitude %>, lng: <% @place.longitude %>},
+            zoom: 8
+          });
+
+          marker = new google.maps.Marker({
+            position: {lat: <% @place.latitude %>, lng: <% @place.longitude %>},
+            map: map
+          });
+        }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] &callback=initMap" async defer></script>
   </div>
 
   <div class="col-sm-5 mr-3">
