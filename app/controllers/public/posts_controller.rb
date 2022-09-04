@@ -15,6 +15,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @place = Post.find(params[:id])
+    @user = @place.user
   end
 
   def edit

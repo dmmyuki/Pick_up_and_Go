@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources:posts
+    resources:users, only:[:show, :edit, :update] do
+      get 'my_page' => 'users#my_page'
+      get 'suspended' => 'users#suspended'
+    end
   end
 
   namespace :admin do

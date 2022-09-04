@@ -55,7 +55,7 @@
       <tr>
         <th>投稿者</th>
         <td>
-          <%= image_tag プロフィール画像のパス, size:"50x50" %>
+          <%= image_tag @user.get_profile_image(100,100) %>
           <!--↓if文使って、フルネームかニックネームを表示させる-->
           <%= @place.user.nickname %>
         </td>
