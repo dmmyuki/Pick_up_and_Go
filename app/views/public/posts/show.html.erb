@@ -34,7 +34,7 @@
           });
         }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] &callback=initMap" async defer></script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
   </div>
 
   <div class="col-sm-5 mr-3">
@@ -61,5 +61,12 @@
         </td>
       </tr>
     </table>
+  </div>
+
+  <div>
+    <% if @place.user == current_user %>
+      <%= link_to "編集", edit_post_path(@place.id) %>
+      <%= link_to "削除", post_path(@place.id), method: :delete, "data-confirm" => "この投稿を削除します。よろしいですか？" %>
+    <% end %>
   </div>
 </div>
