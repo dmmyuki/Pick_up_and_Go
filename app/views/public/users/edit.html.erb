@@ -1,0 +1,39 @@
+<div class="row">
+  <h2>登録情報編集</h2>
+
+  <div>
+    <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+      <table class="table">
+        <tr>
+          <th>プロフィール画像</th>
+          <td><%= f.file_field :profile_image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td>
+            <%= f.text_field :last_name %>
+          </td>
+          <td>
+            <%= f.text_field :first_name %>
+          </td>
+        </tr>
+        <tr>
+          <th>ニックネーム</th>
+          <td><%= f.text_field :nickname %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= f.text_field :phone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= f.text_field :email %></td>
+        </tr>
+      </table>
+
+      <div>
+        <%= f.submit "変更を保存" %>
+      </div>
+    <% end %>
+  </div>
+</div>

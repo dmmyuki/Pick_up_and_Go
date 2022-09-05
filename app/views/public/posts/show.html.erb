@@ -64,7 +64,7 @@
   </div>
 
   <div>
-    <% if @place.user == current_user %>
+    <% if @user == current_user %>
       <%= link_to "編集", edit_post_path(@place.id) %>
       <%= link_to "削除", post_path(@place.id), method: :delete, "data-confirm" => "この投稿を削除します。よろしいですか？" %>
     <% end %>
