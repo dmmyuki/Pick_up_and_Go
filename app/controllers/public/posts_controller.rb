@@ -5,6 +5,7 @@ class Public::PostsController < ApplicationController
 
   def create
     place = Post.new(post_params)
+    place.user_id = current_user.id
     place.save
     redirect_to post_path(place)
   end
@@ -16,6 +17,7 @@ class Public::PostsController < ApplicationController
   def show
     @place = Post.find(params[:id])
     @user = @place.user
+    @comment = Comment.new
   end
 
   def edit
@@ -36,6 +38,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address)
+    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address, :last_name, :first_name, :nickname)
   end
 end

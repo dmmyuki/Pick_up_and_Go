@@ -3,8 +3,9 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   has_many :favorites
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :tag_managers
+  belongs_to :user
 
   # addressカラムを基準に緯度経度を算出する。
   geocoded_by :address

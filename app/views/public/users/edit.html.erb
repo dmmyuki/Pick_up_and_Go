@@ -5,10 +5,6 @@
     <%= form_with model: @user, url: user_path, method: :patch do |f| %>
       <table class="table">
         <tr>
-          <th>プロフィール画像</th>
-          <td><%= f.file_field :profile_image, accept: "image/*" %></td>
-        </tr>
-        <tr>
           <th>氏名</th>
           <td>
             <%= f.text_field :last_name %>

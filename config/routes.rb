@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -16,7 +12,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources:posts
+    resources:posts do
+      resources:comments, only: [:create, :destroy]
+    end
     resources:users, only:[:show, :edit, :update] do
       get 'my_page' => 'users#my_page'
       get 'suspended' => 'users#suspended'

@@ -1,6 +1,11 @@
 <h1>Public::Homes#top</h1>
 <p>Find me in app/views/public/homes/top.html.erb</p>
 
-<%= link_to "新規登録", new_user_registration_path %>
-<%= link_to "ログイン", new_user_session_path %>
-
+<% if user_signed_in? %>
+  <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  <%= link_to "新規投稿", new_post_path %>
+  <%= link_to "投稿一覧", posts_path %>
+<% else %>
+  <%= link_to "新規登録", new_user_registration_path %>
+  <%= link_to "ログイン", new_user_session_path %>
+<% end %>

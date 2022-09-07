@@ -4,10 +4,6 @@
   <div>
     <table class="table">
       <tr>
-        <th>プロフィール画像</th>
-        <td><%= image_tag @user.get_profile_image(100,100) %></td>
-      </tr>
-      <tr>
         <th>氏名</th>
         <td><%= @user.last_name %> <%= @user.first_name %></td>
       </tr>

@@ -55,12 +55,31 @@
       <tr>
         <th>投稿者</th>
         <td>
-          <%= image_tag @user.get_profile_image(100,100) %>
-          <!--↓if文使って、フルネームかニックネームを表示させる-->
-          <%= @place.user.nickname %>
+          <%= @user.last_name %> <%= @user.first_name %>
+          <%= @user.nickname %>
         </td>
       </tr>
     </table>
+  </div>
+
+  <div>
+    <p>コメント件数：<%= @place.comments.count %></p>
+    <% @place.comments.each do |comment| %>
+      <%= comment.user.last_name %>
+      <%= comment.user.first_name %>
+      <%= comment.user.nickname %>
+      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+      <% if comment.user == current_user %>
+        <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form_with model: [@place, @comment] do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントを書く" %>
+      <%= f.submit "送信する" %>
+    <% end %>
   </div>
 
   <div>
