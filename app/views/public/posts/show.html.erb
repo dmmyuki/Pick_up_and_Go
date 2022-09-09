@@ -1,20 +1,44 @@
-<div class="row">
-  <h2>スポット詳細</h2>
+<h2>スポット詳細</h2>
 
-  <div class="col-sm-8 offset-sm-2">
-    <%= image_tag @place.get_image %>
-    <h3><%= @place.title %></h3>
-    <p><%= @place.body %></p>
+<div class="row justify-content-center">
+  <div class="col-sm-5">
+    <%= image_tag @place.get_image, class:"text-center" %>
   </div>
 
-  <div class="col-sm-5 ml-3">
+  <div class="col-sm-5">
+    <h3><%= @place.title %></h3>
+    <p><%= @place.body %></p>
+    <% if @place.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_favorites_path(@place), method: :delete do %>
+          ♥<%= @place.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to post_favorites_path(@place), method: :post do %>
+          ♡<%= @place.favorites.count %> いいね
+        <% end %>
+      </p>
+    <% end %>
+    <div class="text-right">
+      <% if @user == current_user %>
+      <%= link_to "編集", edit_post_path(@place.id), class:"btn btn-warning" %>
+      <%= link_to "削除", post_path(@place.id), method: :delete, "data-confirm" => "この投稿を削除します。よろしいですか？", class:"btn btn-danger" %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-sm-5 bg-success">
     <h5><%= @place.address %></h5>
       <div id='map'></div>
 
       <style>
         #map{
-          height: 200px;
-          width: 300px;
+          height: 100px;
+          width: 200px;
         }
       </style>
 
@@ -37,7 +61,7 @@
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>
   </div>
 
-  <div class="col-sm-5 mr-3">
+  <div class="col-sm-5 bg-info">
     <h4>スポット情報</h4>
     <table class="table table-borderless">
       <tr>
@@ -61,8 +85,10 @@
       </tr>
     </table>
   </div>
+</div>
 
-  <div>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1 bg-warning">
     <p>コメント件数：<%= @place.comments.count %></p>
     <% @place.comments.each do |comment| %>
       <%= comment.user.last_name %>
@@ -75,17 +101,10 @@
     <% end %>
   </div>
 
-  <div>
+  <div class="col-sm-10 offset-sm-1 bg-warning">
     <%= form_with model: [@place, @comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントを書く" %>
+      <%= f.text_area :comment, rows: '3', placeholder: "コメントを書く" %>
       <%= f.submit "送信する" %>
-    <% end %>
-  </div>
-
-  <div>
-    <% if @user == current_user %>
-      <%= link_to "編集", edit_post_path(@place.id) %>
-      <%= link_to "削除", post_path(@place.id), method: :delete, "data-confirm" => "この投稿を削除します。よろしいですか？" %>
     <% end %>
   </div>
 </div>
