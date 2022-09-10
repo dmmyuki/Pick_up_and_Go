@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
   def my_page
     @user = current_user
+    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_places = Post.find(favorites)
   end
 
   def show
