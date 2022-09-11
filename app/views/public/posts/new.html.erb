@@ -1,7 +1,7 @@
 <div class="row">
-  <h2>スポット新規投稿</h2>
+  <h2 class="m-3">スポット新規投稿</h2>
 
-  <div>
+  <div class="col-sm-8 offset-sm-2">
     <%= form_with model: @place, url: posts_path, method: :post do |f| %>
       <table class="table table-borderless">
         <tr>
@@ -34,8 +34,8 @@
         </tr>
       </table>
 
-      <div>
-        <%= f.submit "投稿" %>
+      <div class="text-center">
+        <%= f.submit "投稿", class:"btn btn-outline-primary" %>
       </div>
     <% end %>
   </div>

@@ -12,7 +12,37 @@
 
   <body>
     <div class="container">
+      <header>
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand">Pick up! & Go!</a>
+          <ul class="nav justify-content-end">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to "マイページ", user_my_page_path(current_user.id), class:"nav-link btn btn-outline-info mr-1" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "投稿一覧", posts_path, class:"nav-link btn btn-outline-info mr-1" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規投稿", new_post_path, class:"nav-link btn btn-outline-info mr-1" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"nav-link btn btn-outline-danger" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class:"nav-link btn btn-outline-info mr-1" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class:"nav-link btn btn-outline-info mr-1" %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+
       <%= yield %>
+
     </div>
   </body>
 </html>

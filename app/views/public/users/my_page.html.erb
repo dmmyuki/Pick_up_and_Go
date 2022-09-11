@@ -1,5 +1,5 @@
 <div class="row">
-  <h2>マイページ</h2>
+  <h2 class="m-3">マイページ</h2>
 
   <div class="col-sm-10 offset-sm-1">
     <h5>登録情報</h5>
@@ -28,7 +28,7 @@
       </tr>
     </table>
 
-    <p class="text-right"><%= link_to "編集する", edit_user_path(@user) %></p>
+    <p class="text-right"><%= link_to "編集", edit_user_path(@user), class:"btn btn-outline-secondary" %></p>
   </div>
 
   <div class="col-sm-10 offset-sm-1">
@@ -38,7 +38,7 @@
       <tr>
         <th>タイトル</th>
         <td><%= place.title %></td>
-        <td><%= link_to "Pick up!", post_path(place) %></td>
+        <td><%= link_to "Pick up!", post_path(place), class:"btn btn-outline-success" %></td>
       </tr>
     </table>
     <% end %>
