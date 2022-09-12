@@ -1,0 +1,22 @@
+<h2 class="m-3">検索結果</h2>
+
+<div class="row">
+  <table class="table">
+    <% if @range == "User" %>
+      <% @users.each do |user| %>
+        <tr>
+          <th>投稿者</th>
+          <td><%= user.nickname %></td>
+          <td><%= link_to "投稿一覧", user_path(post.user.id) %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <% @places.each do |place| %>
+        <tr>
+          <th>タイトル</th>
+          <td><%= link_to place.title, post_path(place.id) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
