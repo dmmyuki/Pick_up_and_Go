@@ -17,6 +17,10 @@
           <td><%= f.text_area :body %></td>
         </tr>
         <tr>
+          <th><%= f.label :name, "タグ (,で区切ると複数タグ登録できます)" %></th>
+          <td><%= f.text_field :name, value: @tag_list, class:"form-control" %></td>
+        </tr>
+        <tr>
           <th><%= f.label :business_hour, "営業時間" %></th>
           <td><%= f.text_area :business_hour %></td>
         </tr>

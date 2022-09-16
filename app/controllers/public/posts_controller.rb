@@ -6,28 +6,41 @@ class Public::PostsController < ApplicationController
   def create
     place = Post.new(post_params)
     place.user_id = current_user.id
-    place.save
-    redirect_to post_path(place)
+    tag_list = params[:post][:name].split(',')
+    if place.save
+      place.save_tag(tag_list)
+      redirect_to post_path(place)
+    else
+      render:new
+    end
   end
 
   def index
     @places = Post.all
+    @tag_list = Tag.all
   end
 
   def show
     @place = Post.find(params[:id])
     @user = @place.user
     @comment = Comment.new
+    @post_tags = @post.tags
   end
 
   def edit
     @place = Post.find(params[:id])
+    @tag_list = @place.tags.pluck(:name).join(',')
   end
 
   def update
     place = Post.find(params[:id])
-    place.update(post_params)
-    redirect_to post_path(place.id)
+    tag_list = params[:post][:name].split(',')
+    if place.update(post_params)
+      place.save_tag(tag_list)
+      redirect_to post_path(place.id)
+    else
+      render:edit
+    end
   end
 
   def destroy
@@ -38,6 +51,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address, :last_name, :first_name, :nickname)
+    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address, :last_name, :first_name, :nickname, :name)
   end
 end
