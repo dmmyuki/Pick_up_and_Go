@@ -5,7 +5,7 @@
       <% @tag_list.each do |list| %>
       <tr>
         <td>
-          <%= list.name %>
+          <%= link_to list.name, post_search_tag_path(tag_id: list.id) %>
           <%= "(#{list.posts.count})" %>
         </td>
       </tr>

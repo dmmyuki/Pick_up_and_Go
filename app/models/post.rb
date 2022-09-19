@@ -4,8 +4,8 @@ class Post < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :tags, through: :tag_managers
   has_many :tag_managers, dependent: :destroy
+  has_many :tags, through: :tag_managers
   belongs_to :user
 
   # addressカラムを基準に緯度経度を算出する。

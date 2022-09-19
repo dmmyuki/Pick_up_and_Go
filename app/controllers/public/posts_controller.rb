@@ -1,15 +1,16 @@
 class Public::PostsController < ApplicationController
   def new
     @place = Post.new
+    @tag_list = Tag.new
   end
 
   def create
-    place = Post.new(post_params)
-    place.user_id = current_user.id
-    tag_list = params[:post][:name].split(',')
-    if place.save
-      place.save_tag(tag_list)
-      redirect_to post_path(place)
+    @place = Post.new(post_params)
+    @place.user_id = current_user.id
+    @tag_list = params[:post][:name].split(',')
+    if @place.save
+      @place.save_tag(@tag_list)
+      redirect_to post_path(@place)
     else
       render:new
     end
@@ -24,7 +25,7 @@ class Public::PostsController < ApplicationController
     @place = Post.find(params[:id])
     @user = @place.user
     @comment = Comment.new
-    @post_tags = @post.tags
+    @post_tags = @place.tags
   end
 
   def edit
@@ -33,10 +34,16 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    place = Post.find(params[:id])
-    tag_list = params[:post][:name].split(',')
-    if place.update(post_params)
-      place.save_tag(tag_list)
+    @place = Post.find(params[:id])
+    @tag_list = params[:post][:name].split(',')
+    if @place.update(post_params)
+      # このpost_idに紐づいていたタグを@oldに入れる
+      @old_relations = TagManager.where(post_id: @place.id)
+      # それらを取り出し、消す。消し終わる
+      @old_relations.each do |relation|
+        relation.delete
+      end
+      @place.save_tag(tag_list)
       redirect_to post_path(place.id)
     else
       render:edit
@@ -49,8 +56,17 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def search_tag
+    #検索結果画面でもタグ一覧表示
+    @tag_list = Tag.all
+　　#検索されたタグを受け取る
+    @tag = Tag.find(params[:tag_id])
+　　#検索されたタグに紐づく投稿を表示
+    @places = @tag.posts.page(params[:page]).per(10)
+  end
+
   private
   def post_params
-    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address, :last_name, :first_name, :nickname, :name)
+    params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address, :last_name, :first_name, :nickname)
   end
 end

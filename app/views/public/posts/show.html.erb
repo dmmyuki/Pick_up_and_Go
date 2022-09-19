@@ -87,10 +87,11 @@
       <tr>
         <th>タグ</th>
         <td>
-          <%= tag.name %>
+          <%= link_to tag.name, post_search_tag_path(tag_id: tag.id) %>
           <%= "(#{tag.posts.count})" %>
         </td>
       </tr>
+      <% end %>
     </table>
   </div>
 </div>

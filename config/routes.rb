@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    get "search" => "searches#search"
+    get 'search' => 'searches#search'
     resources:posts do
+      get 'search_tag' => 'posts#search_tag'
       resources:comments, only: [:create, :destroy]
       resources :favorites, only: [:create, :destroy]
     end
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "search" => "searches#search"
+    get 'search' => 'searches#search'
     resources:posts, only:[:index, :show, :destroy]
   end
 

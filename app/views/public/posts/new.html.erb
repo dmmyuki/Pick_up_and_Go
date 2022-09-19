@@ -10,27 +10,31 @@
         </tr>
         <tr>
           <th><%= f.label :title, "タイトル" %></th>
-          <td><%= f.text_field :title %></td>
+          <td><%= f.text_field :title, class:"form-control" %></td>
         </tr>
         <tr>
           <th><%= f.label :body, "紹介文" %></th>
-          <td><%= f.text_area :body %></td>
+          <td><%= f.text_area :body, class:"form-control" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :name, "タグ (,で区切ると複数タグ登録できます)" %></th>
+          <td><%= f.text_field :name, value: @tag_list, class:"form-control" %></td>
         </tr>
         <tr>
           <th><%= f.label :business_hour, "営業時間" %></th>
-          <td><%= f.text_area :business_hour %></td>
+          <td><%= f.text_area :business_hour, class:"form-control" %></td>
         </tr>
         <tr>
           <th><%= f.label :price, "料金" %></th>
-          <td><%= f.text_area :price %></td>
+          <td><%= f.text_area :price, class:"form-control" %></td>
         </tr>
         <tr>
           <th><%= f.label :access, "アクセス方法" %></th>
-          <td><%= f.text_area :access %></td>
+          <td><%= f.text_area :access, class:"form-control" %></td>
         </tr>
         <tr>
           <th><%= f.label :address, "住所" %></th>
-          <td><%= f.text_field :address %></td>
+          <td><%= f.text_field :address, class:"form-control" %></td>
         </tr>
       </table>
 
