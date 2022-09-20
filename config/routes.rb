@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
     get 'search' => 'searches#search'
     resources:posts do
-      get 'search_tag' => 'posts#search_tag'
+      get 'search_tag/:id' => 'posts#search_tag', as: :search_tag
       resources:comments, only: [:create, :destroy]
       resources :favorites, only: [:create, :destroy]
     end

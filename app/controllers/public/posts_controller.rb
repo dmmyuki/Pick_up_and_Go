@@ -26,6 +26,7 @@ class Public::PostsController < ApplicationController
     @user = @place.user
     @comment = Comment.new
     @post_tags = @place.tags
+
   end
 
   def edit
@@ -59,10 +60,10 @@ class Public::PostsController < ApplicationController
   def search_tag
     #検索結果画面でもタグ一覧表示
     @tag_list = Tag.all
-　　#検索されたタグを受け取る
-    @tag = Tag.find(params[:tag_id])
-　　#検索されたタグに紐づく投稿を表示
-    @places = @tag.posts.page(params[:page]).per(10)
+    #検索されたタグを受け取る
+    @tag = Tag.find(params[:id])
+    #検索されたタグに紐づく投稿を表示
+    @places = @tag.posts
   end
 
   private
