@@ -1,0 +1,43 @@
+<h2 class="m-3"><%= @user.fullname %>さんの登録情報詳細</h2>
+
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <table class="table table-borderless">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @user.id %></td>
+      </tr>
+      <tr>
+        <th>氏名</th>
+        <td><%= @user.last_name %>&ensp;<%= @user.first_name %></td>
+      </tr>
+      <tr>
+        <th>ニックネーム</th>
+        <td><%= @user.nickname %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
+        <td><%= @user.phone_number %></td>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <td>
+          <% if @user.suspended? == true %>
+    	       <p class="text-danger">停止</p>
+			    <% else %>
+			      <p class="text-success">有効</p>
+			    <% end %>
+        </td>
+      </tr>
+    </table>
+
+    <div class="text-center">
+      <%= link_to "編集", edit_admin_user_path, class:"btn btn-outline-secondary" %>
+      <%= link_to "アカウントを停止する", admin_user_suspended, method: :patch, "data-confirm" => "本当に停止しますか?", class:"btn btn-outline-danger" %>
+    </div>
+  </div>
+</div>

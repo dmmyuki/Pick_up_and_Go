@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'search' => 'searches#search'
     resources:posts, only:[:index, :show, :destroy]
+    resources:users, only:[:index, :show, :edit, :update] do
+      patch 'suspended' => 'users#suspended'
+    end
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
