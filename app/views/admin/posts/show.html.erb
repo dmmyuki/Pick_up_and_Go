@@ -8,19 +8,6 @@
   <div class="col-sm-5">
     <h3><%= @place.title %></h3>
     <p><%= @place.body %></p>
-    <% if @place.favorited_by?(current_user) %>
-      <p>
-        <%= link_to post_favorites_path(@place), method: :delete do %>
-          ♥<%= @place.favorites.count %> いいね
-        <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to post_favorites_path(@place), method: :post do %>
-          ♡<%= @place.favorites.count %> いいね
-        <% end %>
-      </p>
-    <% end %>
     <div class="text-right">
       <%= link_to "削除", admin_post_path(@place.id), method: :delete, "data-confirm" => "この投稿を削除します。よろしいですか？", class:"btn btn-outline-danger" %>
     </div>
