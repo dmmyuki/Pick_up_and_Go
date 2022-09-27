@@ -26,7 +26,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'search' => 'searches#search'
-    resources:posts, only:[:index, :show, :destroy]
+    resources:posts, only:[:index, :show, :destroy] do
+      get 'search_tag/:id' => 'posts#search_tag', as: :search_tag
+    end
     resources:users, only:[:index, :show, :edit, :update] do
       patch 'suspended' => 'users#suspended'
     end

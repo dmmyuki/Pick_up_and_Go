@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+  <div class="col-sm-2">
+    <!--タグリスト-->
+    <table class="table m-3">
+      <% @tag_list.each do |list|%>
+      <tr>
+        <td>
+          <%= link_to list.name, admin_post_search_tag_path(@places, list) %>
+          <%= "(#{list.posts.count})" %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-sm-10">
+    <h2 class="m-3"><%= @tag.name %>の投稿一覧</h2>
+
+    <% @places.each do |place| %>
+    <!--投稿はカードで囲む-->
+      <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">
+            <%= link_to admin_post_path(place.id) do %>
+              <%= place.title.truncate(25) %>
+            <% end %>
+          </h6>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

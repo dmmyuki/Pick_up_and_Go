@@ -26,7 +26,6 @@ class Public::PostsController < ApplicationController
     @user = @place.user
     @comment = Comment.new
     @post_tags = @place.tags
-
   end
 
   def edit
