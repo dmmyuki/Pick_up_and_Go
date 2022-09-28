@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'searches#search'
+    post 'guest_sign_in' => 'sessions#guest_sign_in'
     resources:posts do
       get 'search_tag/:id' => 'posts#search_tag', as: :search_tag
       resources:comments, only: [:create, :destroy]

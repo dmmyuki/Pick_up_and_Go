@@ -12,7 +12,15 @@ class User < ApplicationRecord
     last_name + first_name
   end
 
-  # 会員名が本名（last_name+firstname）とnicknameの登録がある場合は？？
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.last_name = "ゲスト"
+      user.first_name = "ユーザー"
+      user.phone_number = "01234567890"
+    end
+  end
+
   def self.looks(search, word, nickname)
     if nickname
       # ニックネームが登録されているものを検索
