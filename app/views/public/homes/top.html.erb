@@ -1,7 +1,36 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div id="theTarget">
+  <div class="image1"></div>
+  <div class="image2"></div>
+  <div class="image3"></div>
+  <div class="image4"></div>
+  <div class="image5"></div>
+</div>
 
-<%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+<style>
+  #theTarget {
+    height:500px;
+  }
+
+  .image1 {
+    background-image: url(image1.jpg);
+  }
+
+  .image2 {
+    background-image: url(image2.jpg);
+  }
+
+  .image3 {
+    background-image: url(image3.jpg);
+  }
+
+  .image4 {
+    background-image: url(image4.jpg);
+  }
+
+  .image5 {
+    background-image: url(image5.jpg);
+  }
+</style>
 
 <% if user_signed_in? %>
   <div class="search_form">
