@@ -28,7 +28,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   before_action :user_state, only: [:create]
@@ -38,7 +38,7 @@ class Public::SessionsController < Devise::SessionsController
     @user = User.find_by(email: params[:user][:email])
     return if !@user
     if @user.valid_password?(params[:user][:password]) && @user.suspended
-      redirect_to user_suspended_path
+      redirect_to suspended_path
     end
   end
 end

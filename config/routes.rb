@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get 'about' => 'homes#about'
     get 'search' => 'searches#search'
-    post 'guest_sign_in' => 'sessions#guest_sign_in'
+    devise_scope :user do
+      post 'guest_sign_in' => 'sessions#guest_sign_in'
+    end
     resources:posts do
       get 'search_tag/:id' => 'posts#search_tag', as: :search_tag
       resources:comments, only: [:create, :destroy]
@@ -21,8 +23,8 @@ Rails.application.routes.draw do
     end
     resources:users, only:[:show, :edit, :update] do
       get 'my_page' => 'users#my_page'
-      get 'suspended' => 'users#suspended'
     end
+    get 'suspended' => 'users#suspended'
   end
 
   namespace :admin do

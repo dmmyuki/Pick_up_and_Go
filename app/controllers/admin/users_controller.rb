@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def suspended
-    user = User.find(params[:id])
+    user = User.find(params[:user_id])
     user.update(suspended: true)
     reset_session
     redirect_to admin_users_path
