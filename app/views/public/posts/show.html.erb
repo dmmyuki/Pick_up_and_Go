@@ -82,8 +82,11 @@
       <tr>
         <th>投稿者</th>
         <td>
-          <%= @user.last_name %> <%= @user.first_name %>
-          <%= @user.nickname %>
+          <% if @user.nickname.present? %>
+            <%= @user.nickname %>
+          <% else %>
+            <%= @user.last_name %> <%= @user.first_name %>
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -101,22 +104,45 @@
 
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
-    <p>コメント件数：<%= @place.comments.count %></p>
-    <% @place.comments.each do |comment| %>
-      <%= comment.user.last_name %>
-      <%= comment.user.first_name %>
-      <%= comment.user.nickname %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <% if comment.user == current_user || current_user.admin? %>
-        <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class:"btn btn-outline-warning" %>
-      <% end %>
+    <h5 class="mt-1">コメントを書く</h5>
+    <%= form_with model: [@place, @comment] do |f| %>
+      <%= f.text_area :comment, rows: '3', placeholder: "ここにコメントを書いてみましょう！", class:"form-control" %>
+      <p class="text-right mt-1"><%= f.submit "送信する", class:"btn btn-outline-dark" %></p>
     <% end %>
+
+    <p class="text-right">コメント件数：<%= @place.comments.count %></p>
+
+    <table class="table">
+      <tr class="table-secondary">
+        <th>コメント</th>
+        <th>投稿者</th>
+        <th>投稿日</th>
+        <th></th>
+      </tr>
+      <% @place.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= comment.comment %>
+        </td>
+        <td>
+          <% if comment.user.nickname.present? %>
+            <%= comment.user.nickname %>
+          <% else %>
+            <%= comment.user.last_name %>
+            <%= comment.user.first_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </td>
+        <td>
+          <% if comment.user == current_user %>
+            <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class:"btn btn-outline-warning" %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 
-  <div class="col-sm-10 offset-sm-1">
-    <%= form_with model: [@place, @comment] do |f| %>
-      <%= f.text_area :comment, rows: '3', placeholder: "コメントを書く" %>
-      <%= f.submit "送信する", class:"btn btn-outline-dark" %>
-    <% end %>
-  </div>
 </div>

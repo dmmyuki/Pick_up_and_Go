@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root to: 'posts#index'
     get 'search' => 'searches#search'
     resources:posts, only:[:index, :show, :destroy] do
       get 'search_tag/:id' => 'posts#search_tag', as: :search_tag

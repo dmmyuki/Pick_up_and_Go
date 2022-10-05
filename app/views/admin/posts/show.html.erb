@@ -48,10 +48,10 @@
     <h4>スポット情報</h4>
     <table class="table table-borderless">
       <tr>
-        <tr>
-          <th>住所</th>
-          <td><%= @place.address %></td>
-        </tr>
+        <th>住所</th>
+        <td><%= @place.address %></td>
+      </tr>
+      <tr>
         <th>営業時間</th>
         <td><%= @place.business_hour %></td>
       </tr>
@@ -66,8 +66,11 @@
       <tr>
         <th>投稿者</th>
         <td>
-          <%= @user.last_name %> <%= @user.first_name %>
-          <%= @user.nickname %>
+          <% if @user.nickname.present? %>
+            <%= @user.nickname %>
+          <% else %>
+            <%= @user.last_name %> <%= @user.first_name %>
+          <% end %>
         </td>
       </tr>
       <tr>
@@ -85,14 +88,36 @@
 
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
-    <p>コメント件数：<%= @place.comments.count %></p>
-    <% @place.comments.each do |comment| %>
-      <%= comment.user.last_name %>
-      <%= comment.user.first_name %>
-      <%= comment.user.nickname %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class:"btn btn-outline-warning" %>
-    <% end %>
+    <p class="text-right">コメント件数：<%= @place.comments.count %></p>
+    <table class="table">
+      <tr class="table-secondary">
+        <th>コメント</th>
+        <th>投稿者</th>
+        <th>投稿日</th>
+        <th></th>
+      </tr>
+      <% @place.comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= comment.comment %>
+        </td>
+        <td>
+          <% if comment.user.nickname.present? %>
+            <%= comment.user.nickname %>
+          <% else %>
+            <%= comment.user.last_name %>
+            <%= comment.user.first_name %>
+          <% end %>
+        </td>
+        <td>
+          <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </td>
+        <td>
+          <%= link_to "削除", admin_comment_path(comment.post, comment), method: :delete, class:"btn btn-outline-warning" %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 
 </div>

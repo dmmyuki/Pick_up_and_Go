@@ -15,9 +15,9 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = current_customer
+    @user = current_user
     @user.update(user_params)
-    redirect_to user_my_page_path(current_customer)
+    redirect_to user_my_page_path(current_user)
   end
 
   def suspended
