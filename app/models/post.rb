@@ -8,6 +8,10 @@ class Post < ApplicationRecord
   has_many :tags, through: :tag_managers
   belongs_to :user
 
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :address, presence: true
+
   # addressカラムを基準に緯度経度を算出する。
   geocoded_by :address
   # 住所変更時に緯度経度も変更する。
