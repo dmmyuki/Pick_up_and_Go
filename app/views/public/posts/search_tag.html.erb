@@ -1,22 +1,27 @@
 <div class="row justify-content-center">
   <div class="col-sm-10">
-    <h2 class="m-3"><%= @tag.name %>の投稿一覧</h2>
+    <h2 class="m-3">【<%= @tag.name %>】の投稿一覧</h2>
 
+    <div class="card-group">
     <% @places.each do |place| %>
-      <div class="card">
-        <div class="card-body">
-          <h6 class="card-title">
-            <%= link_to post_path(place.id) do %>
-              <%= place.title.truncate(25) %>
-            <% end %>
-          </h6>
+      <div class="col">
+        <div class="card" style="width: 18rem;">
+          <%= image_tag place.get_image, class:"card-img-top", size:"100x200" %>
+          <div class="card-body">
+            <p class="card-text">
+              <%= link_to post_path(place.id) do %>
+                <%= place.title.truncate(25) %>
+              <% end %>
+            </p>
+          </div>
         </div>
       </div>
     <% end %>
+    </div>
   </div>
 
-  <div class="col-sm-2">
-    <!--タグリスト-->
+  <div class="col-sm-2 text-truncate">
+    <h2 class="m-3">タグ一覧</h2>
     <table class="table m-3">
       <% @tag_list.each do |list|%>
       <tr>
