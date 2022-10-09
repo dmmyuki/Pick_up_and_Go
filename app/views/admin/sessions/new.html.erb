@@ -1,8 +1,8 @@
 <h2 class="m-3">管理者ログイン</h2>
 
 <div class="row">
-  <%= form_with model: @admin, url: admin_session_path do |f| %>
   <div class="col-sm-10 offset-sm-1">
+  <%= form_with model: @admin, url: admin_session_path do |f| %>
     <table class="table table-borderless">
       <tr>
         <th><%= f.label :email, "メールアドレス" %></th>
@@ -26,8 +26,9 @@
     <div class="text-center">
       <%= f.submit "ログイン", class:"btn btn-outline-info" %>
     </div>
-  </div>
   <% end %>
+  </div>
+
+</div>
 
   <%= render "admin/shared/links" %>
-</div>

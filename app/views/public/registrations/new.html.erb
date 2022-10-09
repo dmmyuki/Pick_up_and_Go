@@ -1,9 +1,9 @@
-<h2>新規会員登録</h2>
+<h2 class="m-3 ">新規会員登録</h2>
 
-<%= form_with model: @user, url: user_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+  <%= form_with model: @user, url: user_registration_path do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
     <table class="table table-borderless">
       <tr>
         <th>名前</th>
@@ -42,11 +42,13 @@
         <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
       </tr>
     </table>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
+  <div class="text-center">
+    <%= f.submit "新規登録", class:"btn btn-outline-info" %>
   </div>
-<% end %>
+  <% end %>
+  </div>
+</div>
+
 
 <%= render "public/shared/links" %>
