@@ -9,7 +9,7 @@
           <%= image_tag place.get_image, class:"card-img-top", size:"100x200" %>
           <div class="card-body">
             <p class="card-text">
-              <%= link_to post_path(place.id) do %>
+              <%= link_to admin_post_path(place.id) do %>
                 <%= place.title.truncate(25) %>
               <% end %>
             </p>

@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources:posts, only:[:index, :show, :destroy] do
       get 'search_tag/:id' => 'posts#search_tag', as: :search_tag
     end
-    resources:users, only:[:index, :show, :edit, :update] do
+    resources:users, only:[:index, :show, :update] do
       patch 'suspended' => 'users#suspended'
     end
     resources:comments, only:[:index, :destroy]

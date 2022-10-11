@@ -77,7 +77,7 @@
         <th>タグ</th>
         <td>
           <% @post_tags.each do |tag| %>
-            <%= link_to tag.name, post_search_tag_path(@place, tag) %>
+            <%= link_to tag.name, admin_post_search_tag_path(@place, tag) %>
             <%= "(#{tag.posts.count})" %>
           <% end %>
         </td>
