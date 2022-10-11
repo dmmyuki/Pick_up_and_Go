@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  before_action :login_user_only
+
   def my_page
     @user = current_user
     favorites= Favorite.where(user_id: @user.id).pluck(:post_id)

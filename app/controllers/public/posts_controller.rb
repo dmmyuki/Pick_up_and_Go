@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :login_user_only
+
   def new
     @place = Post.new
     @tag_list = Tag.new
