@@ -60,6 +60,10 @@ class Public::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  def after_sign_in_path_for(resource)
+    user_my_page_path(resource)
+  end
+
   before_action :ensure_normal_user, only: [:update, :destroy]
 
   def ensure_normal_user

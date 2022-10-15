@@ -31,6 +31,10 @@ class Public::SessionsController < Devise::SessionsController
     redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
+  def after_sign_out_path_for(resource)
+    new_user_session_path
+  end
+
   before_action :user_state, only: [:create]
 
   protected
