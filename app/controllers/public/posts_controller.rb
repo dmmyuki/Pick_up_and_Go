@@ -45,8 +45,8 @@ class Public::PostsController < ApplicationController
       @old_relations.each do |relation|
         relation.delete
       end
-      @place.save_tag(tag_list)
-      redirect_to post_path(place.id)
+      @place.save_tag(@tag_list)
+      redirect_to post_path(@place.id)
     else
       render:edit
     end
