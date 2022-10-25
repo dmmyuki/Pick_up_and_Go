@@ -11,6 +11,8 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :address, presence: true
+  validates :latitude, presence: true
+  validates :longitude, presence: true
 
   # addressカラムを基準に緯度経度を算出する。
   geocoded_by :address
