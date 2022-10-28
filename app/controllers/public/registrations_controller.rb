@@ -64,11 +64,4 @@ class Public::RegistrationsController < Devise::RegistrationsController
     user_my_page_path(resource)
   end
 
-  before_action :ensure_normal_user, only: [:update, :destroy]
-
-  def ensure_normal_user
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーは更新・削除できません。'
-    end
-  end
 end
