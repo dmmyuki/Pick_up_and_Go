@@ -33,9 +33,9 @@
 
 ## 設計書
 - 実装機能リスト：https://docs.google.com/spreadsheets/d/1u2_xvr8GgQjzbqCzKLKUHrbfATQv_2CsJxP_rd1apwY/edit?usp=sharing
-- ER図：
-- テーブル定義書：
-- 詳細設計：
+- ER図：https://drive.google.com/file/d/1067cxIBSQSb3ssCIcEPU6oTKyr3Xny7o/view?usp=sharing
+- テーブル定義書：https://docs.google.com/spreadsheets/d/14geOVWN2o8dXpo3uSAcUdWA0a70xj39EmZ9v7yQyUOM/edit?usp=sharing
+- 詳細設計：https://docs.google.com/spreadsheets/d/1eFYE1WVDZ-fZ36jPpOxE9MDx7pJpTjaL2UKLPkMLKGw/edit?usp=sharing
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -43,6 +43,3 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-使用検討中です
