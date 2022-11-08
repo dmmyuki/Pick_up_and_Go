@@ -14,3 +14,14 @@
  *= require_self
  */
 
+.thumbnail-img {
+	height: 180px;
+	width: 100%;
+	object-fit: cover;
+}
+
+.show-img{
+	height: 400px;
+	width: 400px;
+	object-fit: contain;
+}
