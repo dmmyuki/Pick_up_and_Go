@@ -1,3 +1,6 @@
+<% @user = @place.user %>
+<% @post_tags = @place.tags %>
+
 <h2 class="m-3">スポット詳細</h2>
 
 <div class="row justify-content-center">
@@ -10,7 +13,7 @@
     <p><%= @place.body %></p>
     <% if @place.favorited_by?(current_user) %>
       <p>
-        <%= link_to post_favorite_path(@place), method: :delete do %>
+        <%= link_to post_favorites_path(@place), method: :delete do %>
           ♥<%= @place.favorites.count %> いいね
         <% end %>
       </p>

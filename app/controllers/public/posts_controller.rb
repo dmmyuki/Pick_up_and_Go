@@ -25,9 +25,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @place = Post.find(params[:id])
-    @user = @place.user
     @comment = Comment.new
-    @post_tags = @place.tags
   end
 
   def edit
