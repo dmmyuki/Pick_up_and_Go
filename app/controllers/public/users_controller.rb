@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :login_user_only
+  before_action :baria_user, only: [:edit, :update]
 
   def my_page
     @user = current_user
@@ -29,6 +30,13 @@ class Public::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:last_name, :first_name, :profile_image, :nickname, :phone_number, :email)
+  end
+
+  def baria_user
+    @user = User.find(params[:id])
+    if current_user.id != @user.id
+      redirect_to(user_path(current_user.id))
+    end
   end
 
 end

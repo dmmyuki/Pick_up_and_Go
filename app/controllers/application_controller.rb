@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  
   def login_user_only
     unless current_user.present?
       redirect_back(fallback_location: root_url)

@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :login_user_only
+  before_action :baria_user, only: [:edit, :update, :destroy]
 
   def new
     @place = Post.new
@@ -68,5 +69,11 @@ class Public::PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title, :body, :image, :business_hour, :price, :access, :address, :last_name, :first_name, :nickname)
+  end
+
+  def baria_user
+    @place = Post.find(params[:id])
+    @user = @place.user
+    redirect_to(posts_path) unless @user == current_user
   end
 end
