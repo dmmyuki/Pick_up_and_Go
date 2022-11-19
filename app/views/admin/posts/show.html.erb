@@ -48,23 +48,23 @@
     <h4>スポット情報</h4>
     <table class="table table-borderless">
       <tr>
-        <th>住所</th>
+        <th><i class="fas fa-map-marker-alt"></i> 住所</th>
         <td><%= @place.address %></td>
       </tr>
       <tr>
-        <th>営業時間</th>
+        <th><i class="fas fa-clock"></i> 営業時間</th>
         <td><%= @place.business_hour %></td>
       </tr>
       <tr>
-        <th>料金</th>
+        <th><i class="fas fa-coins"></i> 料金</th>
         <td><%= @place.price %></td>
       </tr>
       <tr>
-        <th class="text-truncate">アクセス方法</th>
+        <th class="text-truncate"><i class="fas fa-walking"></i> アクセス方法</th>
         <td><%= @place.access %></td>
       </tr>
       <tr>
-        <th>投稿者</th>
+        <th><i class="fas fa-user-edit"></i> 投稿者</th>
         <td>
           <% if @user.nickname.present? %>
             <%= @user.nickname %>
@@ -74,7 +74,7 @@
         </td>
       </tr>
       <tr>
-        <th>タグ</th>
+        <th><i class="fas fa-tag"></i> タグ</th>
         <td>
           <% @post_tags.each do |tag| %>
             <%= link_to tag.name, admin_post_search_tag_path(@place, tag) %>
