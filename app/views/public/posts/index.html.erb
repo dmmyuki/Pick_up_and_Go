@@ -25,8 +25,7 @@
             <h5 class="card-title text-truncate"><%= place.title %></h5>
             <p class="card-text text-right"><%= place.created_at.strftime('%Y/%m/%d') %></p>
             <%= link_to post_path(place.id), class:"btn btn-outline-primary" do %>
-              <i class="fa-solid fa-person-walking"></i>
-              <span>Pick up!</span>
+              <i class="fas fa-crosshairs"></i> Pick up!
             <% end %>
           </div>
         </div>
@@ -36,7 +35,7 @@
   </div>
 
   <div class="col-sm-2 text-truncate">
-    <h2 class="m-3">タグ一覧</h2>
+    <h3 class="m-3"><i class="fas fa-tags"></i>タグ一覧</h3>
     <table class="table">
       <% @tag_list.each do |list| %>
       <tr>
