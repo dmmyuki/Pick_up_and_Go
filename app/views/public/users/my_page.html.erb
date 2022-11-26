@@ -2,7 +2,7 @@
   <h2 class="m-3">マイページ</h2>
 
   <div class="col-sm-10 offset-sm-1">
-    <h5>登録情報</h5>
+    <h5><i class="fas fa-pencil-alt"></i> 登録情報</h5>
 
     <table class="table">
       <tr>
@@ -31,13 +31,17 @@
   </div>
 
   <div class="col-sm-10 offset-sm-1">
-    <h5>いいねしたスポット</h5>
+    <h5><i class="fas fa-heart"></i> いいねしたスポット</h5>
     <% @favorite_places.each do |place|%>
     <table class="table">
       <tr>
         <th>タイトル</th>
-        <td><%= place.title %></td>
-        <td><%= link_to "Pick up!", post_path(place), class:"btn btn-outline-success" %></td>
+        <td class="text-center"><%= place.title %></td>
+        <td class="text-right">
+          <%= link_to post_path(place.id), class:"btn btn-outline-primary" do %>
+            <i class="fas fa-crosshairs"></i> Pick up!
+          <% end %>
+        </td>
       </tr>
     </table>
     <% end %>
