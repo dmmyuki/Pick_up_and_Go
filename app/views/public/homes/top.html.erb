@@ -7,7 +7,9 @@
       <div class="card-body">
         <h5 class="card-title">About</h5>
         <p class="card-text">Pick up! & Go! ってどんなサイト？簡単にですが紹介します！</p>
-        <%= link_to "Go!", about_path, class:"btn btn-outline-success" %>
+        <%= link_to about_path, class:"btn btn-outline-success" do %>
+          Go! <i class="fas fa-running"></i>
+        <% end %>
       </div>
     </div>
   </div>
