@@ -13,8 +13,10 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-light bg-light">
-        <%= link_to "Pick up! & Go!", root_path, class:"navbar-brand" %>
+      <nav class="navbar navbar-light">
+        <%= link_to root_path, class:"navbar-brand" do %>
+          <h3><i class="fas fa-crosshairs"></i> Pick up! & Go! <i class="fas fa-running"></i></h3>
+        <% end %>
         <ul class="nav justify-content-end">
           <% if user_signed_in? %>
             <li class="nav-item">
