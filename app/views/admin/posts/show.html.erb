@@ -7,7 +7,7 @@
 
   <div class="col-sm-5">
     <h3><%= @place.title %></h3>
-    <p><%= @place.body %></p>
+    <p><%= safe_join(@place.body.split("\n"),tag(:br)) %></p>
     <div class="text-right">
       <%= link_to "削除", admin_post_path(@place.id), method: :delete, "data-confirm" => "この投稿を削除します。よろしいですか？", class:"btn btn-outline-danger" %>
     </div>
@@ -53,15 +53,15 @@
       </tr>
       <tr>
         <th><i class="fas fa-clock"></i> 営業時間</th>
-        <td><%= @place.business_hour %></td>
+        <td><%= safe_join(@place.business_hour.split("\n"),tag(:br)) %></td>
       </tr>
       <tr>
         <th><i class="fas fa-coins"></i> 料金</th>
-        <td><%= @place.price %></td>
+        <td><%= safe_join(@place.price.split("\n"),tag(:br)) %></td>
       </tr>
       <tr>
         <th class="text-truncate"><i class="fas fa-walking"></i> アクセス方法</th>
-        <td><%= @place.access %></td>
+        <td><%= safe_join(@place.access.split("\n"),tag(:br)) %></td>
       </tr>
       <tr>
         <th><i class="fas fa-user-edit"></i> 投稿者</th>
