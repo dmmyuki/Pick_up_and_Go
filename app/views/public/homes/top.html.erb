@@ -45,3 +45,26 @@
       </div>
     </div>
 </div>
+
+<div class="row">
+  <h2 class="mt-5"><i class="fas fa-crown"></i> いいねランキング</h2>
+    <div class="col-sm-12 mt-3">
+      <div class="card-group">
+        <% @place_ranks.each.with_index(1) do |place, i| %>
+          <div class="col-sm-4">
+            <h5 class="m-2"><%= i %>位</h5>
+            <div class="card">
+              <%= image_tag place.get_image, class:"card-img-top thumbnail-img" %>
+              <div class="card-body">
+                <h5 class="card-title text-truncate"><%= place.title %></h5>
+                <p class="card-text text-right"><%= place.created_at.strftime('%Y/%m/%d') %></p>
+                <%= link_to post_path(place.id), class:"btn btn-outline-primary" do %>
+                  <i class="fas fa-crosshairs"></i> Pick up!
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>
