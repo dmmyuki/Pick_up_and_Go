@@ -28,7 +28,8 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to posts_path, notice: 'ゲストユーザーとしてログインしました。'
+    flash[:notice] = "ゲストユーザーとしてログインしました。"
+    redirect_to posts_path
   end
 
   def after_sign_out_path_for(resource)

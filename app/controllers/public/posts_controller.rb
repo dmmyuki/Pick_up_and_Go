@@ -13,8 +13,10 @@ class Public::PostsController < ApplicationController
     @tag_list = params[:post][:name].split(',')
     if @place.save
       @place.save_tag(@tag_list)
+      flash[:notice] = "投稿に成功しました。"
       redirect_to post_path(@place)
     else
+      flash[:alert] = "投稿に失敗しました。"
       render:new
     end
   end
