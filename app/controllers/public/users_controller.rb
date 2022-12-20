@@ -20,6 +20,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
+    flash[:notice] = "登録内容の変更を保存しました。"
     redirect_to user_my_page_path(current_user)
   end
 
