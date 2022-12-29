@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        title: タイトル
+        body: 紹介文
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
